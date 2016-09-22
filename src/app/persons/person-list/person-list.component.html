@@ -1,0 +1,43 @@
+<div class="item">
+  <div class="ui button positive" (click)="openNewPersonForm()">Add</div>
+</div>
+
+<div componentAnchor></div>
+
+<table class="ui selectable inverted table">
+  <thead>
+    <tr>
+      <th>
+        <div>Name</div> <!-- TODO: order by name -->
+        <div>(job title)</div>        
+      </th>
+      <th>Age</th>
+      <th>Nick</th>
+      <th>Employee</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of persons; let i = index;"> <!-- TODO: remove index when person has unique key -->
+      <td>
+        <div>{{ person.name }}</div>
+        <div>{{ person.job }}</div>
+      </td>
+      <td>{{ person.age }}</td>
+      <td>{{ person.nick }}</td>
+      <td>
+        <input type="checkbox" [(ngModel)]="person.employee" (ngModelChange)="onChange(person)">
+      </td>
+      <td>
+        <div class="ui vertical animated button" (click)="delete(person, i)">
+          <div class="hidden content">Delete</div>
+          <div class="visible content">
+            <i class="trash icon"></i>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<change-tracker></change-tracker>
